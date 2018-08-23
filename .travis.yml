@@ -27,11 +27,9 @@ matrix:
         - export MLFLOW_TEST_REQUIREMENTS=false
         - sudo ./install-travis.sh
         - export MLFLOW_HOME=$(pwd)
-        - cd R/mlflow
       script:
-        - R CMD build .
+        - R CMD build R/mlflow/.
         - R CMD check --no-build-vignettes --no-manual --no-tests cloudml*tar.gz
-        - cd tests
-        - Rscript ../.travis.R
+        - Rscript R/mlflow/.travis.R
       after_success:
         - Rscript -e 'covr::codecov()'
