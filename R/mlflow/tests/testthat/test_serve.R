@@ -30,9 +30,14 @@ test_that("mlflow can serve a model function", {
 
   http_prediction <- httr::content(httr::POST("http://127.0.0.1:8090/predict/", body = "{}"))
 
+  correct_prediction <- predict(model, iris)
+
+  message(http_prediction)
+  message(correct_prediction)
+
   expect_equal(
     unlist(http_prediction),
-    as.vector(predict(model, iris)),
+    as.vector(correct_prediction),
     tolerance = 1e-5
   )
 })
