@@ -30,7 +30,11 @@ test_that("mlflow can serve a model function", {
 
   http_prediction <- httr::content(httr::POST("http://127.0.0.1:8090/predict/", body = "{}"))
 
-  correct_prediction <- predict(model, iris)
+  if (is.character(http_prediction)) {
+    stop(http_prediction)
+  }
+
+  correct_prediction <- predict(model, c())
 
   message(http_prediction)
   message(correct_prediction)
