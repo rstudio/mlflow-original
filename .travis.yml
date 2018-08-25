@@ -14,9 +14,9 @@ matrix:
     - language: python
       python: 3.6
       install:
-        - sudo ./install-travis.sh
+        - sudo source install-travis.sh
       script:
-        - sudo ./test-travis.sh
+        - sudo source test-travis.sh
     - language: r
       dist: trusty
       cache: packages
@@ -25,7 +25,7 @@ matrix:
       before_install:
         - export NOT_CRAN=true
         - export MLFLOW_TEST_REQUIREMENTS=false
-        - sudo ./install-travis.sh
+        - sudo source install-travis.sh
         - export MLFLOW_HOME=$(pwd)
         - cd R/mlflow
       script:
